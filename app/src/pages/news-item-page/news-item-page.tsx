@@ -4,8 +4,7 @@ import { NewsItemType } from '../../types/news-item';
 import UnknownPage from "../../components/unknown-page/unknown-page";
 import "./news-item-page.css";
 import NewsItemCard from "../../components/news-item-card/news-item-card";
-import React from "react";
-import { fetchComments } from "../../store/comments-slice/comments-slice";
+
 
 
 export default function NewsItemPage() {

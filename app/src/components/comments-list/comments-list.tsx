@@ -1,9 +1,10 @@
-import React from "react"
-import { fetchComments } from "../../store/comments-slice/comments-slice"
-import { useAppDispatch, useAppSelector } from '../../hooks/store';
+
+import {useAppSelector } from '../../hooks/store';
 import { NewsItemType } from "../../types/news-item";
 import { Comment } from '../../types/comment';
+import { FadeLoader } from 'react-spinners';
 import CommentItem from "../comment-item/comment-item";
+import "./comments-list.css";
 
 type CommentsListProps = {
     currentItem : NewsItemType
@@ -11,10 +12,13 @@ type CommentsListProps = {
 
 export default function CommentsList({ currentItem }: CommentsListProps) {
     const comments = useAppSelector(state => state.comments.items);
+    const isCommentsLoaded = useAppSelector(state => state.comments.loaded);
     
     return (
-        <div className="container">
-            {comments.map((comment: Comment) => <CommentItem key={comment.id} comment={ comment }></CommentItem>)}
+        <div className="container comment">
+            {isCommentsLoaded ? comments.map((comment: Comment) => <CommentItem key={comment.id} comment={comment}></CommentItem>) 
+            : <FadeLoader style={{position: "absolute"}}/>
+        }
         </div>
     )
 }
