@@ -1,0 +1,9 @@
+.card {
+    width: 350px;
+    overflow: auto;
+    cursor: pointer;
+    
+}
+p {
+    font-size: 1.25em;
+}

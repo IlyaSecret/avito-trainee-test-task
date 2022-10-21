@@ -1,0 +1,11 @@
+#link {
+    color: white;
+}
+.container {
+    color: white;
+}
+.news-item__link{
+    position: fixed;
+    top: 0;
+    right: 0;
+}
