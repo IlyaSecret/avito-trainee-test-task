@@ -14,11 +14,16 @@ export default function CommentsList({ currentItem }: CommentsListProps) {
     const comments = useAppSelector(state => state.comments.items);
     const isCommentsLoaded = useAppSelector(state => state.comments.loaded);
     
-    return (
-        <div className="container comment">
-            {isCommentsLoaded ? comments.map((comment: Comment) => <CommentItem key={comment.id} comment={comment}></CommentItem>) 
-            : <FadeLoader style={{position: "absolute"}}/>
-        }
-        </div>
-    )
+    if (!currentItem.hasOwnProperty("kids")) {
+        return <p>There is no comments</p>
+    } else {
+        return (
+            <div className="container comment">
+                {isCommentsLoaded ? comments?.map((comment: Comment) => <CommentItem key={comment.id} comment={comment}></CommentItem>) 
+                : <FadeLoader style={{position: "absolute"}}/>
+            }
+            </div>
+        )
+    }
+    
 }

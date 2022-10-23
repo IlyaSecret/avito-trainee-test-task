@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from "axios";
 import { SliceCaseReducers } from '@reduxjs/toolkit/dist/createSlice';
+import { BASE_URL } from '../../consts';
 
 const initialState = {
     items: [],
@@ -13,7 +14,7 @@ async (kids: any[]) => {
     const res = await Promise.all(
         kids.map(async i => {
             return await axios
-                .get(`https://hacker-news.firebaseio.com/v0/item/${i}.json`)
+                .get(`${BASE_URL}/item/${i}.json`)
                 .then(res => res.data);
         })
     );

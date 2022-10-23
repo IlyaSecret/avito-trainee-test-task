@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SliceCaseReducers } from "@reduxjs/toolkit/dist/createSlice";
 import axios from "axios";
+import { BASE_URL } from "../../consts";
 
 const initialState = {
     newsList: [],
@@ -13,17 +14,17 @@ export const fetchNews = createAsyncThunk(
     'news/fetchNews',
     async () => {
     const ids: any[] = await axios
-        .get('https://hacker-news.firebaseio.com/v0/newstories.json')
+        .get(`${BASE_URL}/newstories.json`)
         .then(res => res.data.slice(0, 100));
 
     const res = await Promise.all(
         ids.map(async i => {
             return await axios
-                .get(`https://hacker-news.firebaseio.com/v0/item/${i}.json`)
+                .get(`${BASE_URL}/item/${i}.json`)
                 .then(res => res.data);
         })
     );
-    return res.filter(i => i !== null)
+    return res.filter(item => item !== null)
 });
     
 
@@ -37,7 +38,7 @@ const newsSlice = createSlice<any, SliceCaseReducers<any>, string>({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchNews.pending, (state, action) => {
-            state.isLoading = true;
+            state.loaded = false;
         }),
         builder.addCase(fetchNews.fulfilled, (state, action) => {
             state.newsList = action.payload;

@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { NewsItemType } from '../../types/news-item';
-import UnknownPage from "../../components/unknown-page/unknown-page";
+import UnknownPage from "../unknown-page/unknown-page";
 import "./news-item-page.css";
 import NewsItemCard from "../../components/news-item-card/news-item-card";
 

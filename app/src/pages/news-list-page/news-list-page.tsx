@@ -27,7 +27,6 @@ export default function NewsListPage() {
                 news?.map((item: NewsItemType) => <NewsItem item={item} key={ item.id } />)
                 :
                 <FadeLoader></FadeLoader>
-            
         }
         </Stack >
             

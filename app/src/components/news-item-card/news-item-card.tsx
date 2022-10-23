@@ -12,8 +12,8 @@ import { Button } from "@mui/material";
 
 export default function NewsItemCard() {
     const { id } = useParams();
-    const news = useAppSelector(state => state.news.newsList);
     const dispatch = useAppDispatch()
+    const news = useAppSelector(state => state.news.newsList);
     const currentNewsItem: NewsItemType = news.find((item: NewsItemType) => item.id === Number(id));
     React.useEffect(() => {
         dispatch(fetchComments(currentNewsItem?.kids))
