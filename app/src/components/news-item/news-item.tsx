@@ -7,13 +7,13 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { NewsItemType } from '../../types/news-item';
 import '../news-item/news-item.css'
 import { Link } from "react-router-dom";
+import { convertDate } from '../../utils/convert-date';
 type NewsItemProps = {
     item : NewsItemType
 }
 
 
 export default function NewsItem({ item }: NewsItemProps) {
-    const date = new Date(item.time * 1000).toLocaleDateString();
     return (
         <>
             <Link to={`/${item.id}`} style={{ textDecoration: 'none' }}>
@@ -23,7 +23,7 @@ export default function NewsItem({ item }: NewsItemProps) {
                     <CardContent>
                         <p><AccountBoxIcon />Author: {item.by}</p>
                         <p><StarIcon />Rating: {item.score}</p>
-                        <p><CalendarTodayIcon />Date: { date }</p>
+                        <p><CalendarTodayIcon />Date: { convertDate(item.time)}</p>
                         
                     </CardContent>
                 </Card>
